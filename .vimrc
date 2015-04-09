@@ -23,12 +23,20 @@ set visualbell t_vb=    " Use null visual bell (no beeps or flashes).
 
 if has("gui_running")
   "set textwidth=78
-  "set guifont=Monospace\ 8
+  set guifont=Monospace\ 8
+
+  if has('win32') || has('win64')
+    set guifont=Consolas:h9:cEASTEUROPE
+  endif
+
+  set backspace=2
+  set backspace=eol,indent,start
+  
   set go=aeigr
   set columns=140 lines=54
   set showbreak=…
-  "colorscheme ir_black
-  colorscheme macvim
+  colorscheme desert
+  "colorscheme macvim
   highlight Normal guibg=black
 endif
 
@@ -77,6 +85,9 @@ function IndentWithSpace ()
   set shiftwidth=2
 endfunction
 
+if has('win32') || has('win64')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
 call pathogen#infect()
 
 " Toggle the NERD Tree window
@@ -112,3 +123,8 @@ map ,et :tabe %%
 " Change tabs
 nnoremap <C-Tab> :tabnext<CR>
 nnoremap <C-S-Tab> :tabprevious<CR>
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'r'
