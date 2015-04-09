@@ -18,20 +18,19 @@ set visualbell t_vb=    " Use null visual bell (no beeps or flashes).
 
 if has("gui_running")
   "set textwidth=78
-  set guifont=Monospace\ 8
 
   if has('win32') || has('win64')
     set guifont=Consolas:h9:cEASTEUROPE
+  else
+    set guifont=Monospace\ 8
   endif
 
   set backspace=2
   set backspace=eol,indent,start
   
   set go=aeigr
-  set columns=140 lines=54
-  set showbreak=…
-  colorscheme desert
-  "colorscheme macvim
+  set showbreak=...
+  colorscheme solarized
   highlight Normal guibg=black
 endif
 
@@ -66,14 +65,14 @@ set grepprg=grep\ -nH\ $*
 " all the figure labels. Very useful!
 set iskeyword+=:
 
-function IndentWithTab ()
+function! IndentWithTab ()
   set noexpandtab
   set tabstop=4
   set shiftwidth=4
   set softtabstop=4
 endfunction
 
-function IndentWithSpace ()
+function! IndentWithSpace ()
   set expandtab
   set tabstop=4
   set softtabstop=4
@@ -132,3 +131,4 @@ nnoremap ,p 0f/lytp0f/P
 nnoremap ,n 0f/inemOk<Esc>
 nnoremap ,0 0f/i0<Esc>
 
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
