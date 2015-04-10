@@ -3,11 +3,6 @@ set autoindent
 set smartindent
 set cindent
 
-set noexpandtab
-set tabstop=8
-set shiftwidth=8
-set softtabstop=8
-
 set hlsearch
 set nocp
 set foldmethod=manual
@@ -73,29 +68,31 @@ set iskeyword+=:
 
 function IndentWithTab ()
   set noexpandtab
-  set tabstop=8
-  set shiftwidth=8
-  set softtabstop=8
+  set tabstop=4
+  set shiftwidth=4
+  set softtabstop=4
 endfunction
 
 function IndentWithSpace ()
   set expandtab
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
+  set tabstop=4
+  set softtabstop=4
+  set shiftwidth=4
 endfunction
 
 if has('win32') || has('win64')
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
+
 call pathogen#infect()
 
-" Toggle the NERD Tree window
-nnoremap ,.  :NERDTreeToggle<CR>
+" Open the NERD Tree window
+nnoremap ,.  :NERDTree .<CR>
 
 let NERDChristmasTree=0
 let NERDTreeHighlightCursorline=1
-
+set autochdir
+let NERDTreeChDirMode=2
 
 " Close current buffer without closing window.
 command! Bd enew<Bar>bd #
@@ -128,3 +125,10 @@ nnoremap <C-S-Tab> :tabprevious<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'r'
+
+" szoftlab5 makrok
+nnoremap ,o 0f/iOK<Esc>
+nnoremap ,p 0f/lytp0f/P
+nnoremap ,n 0f/inemOk<Esc>
+nnoremap ,0 0f/i0<Esc>
+
