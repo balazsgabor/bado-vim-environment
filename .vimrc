@@ -2,6 +2,13 @@ syntax on
 set autoindent
 set smartindent
 set cindent
+set omnifunc=syntaxcomplete#Complete
+iabbrev </ </<C-X><C-O>
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 set hlsearch
 set nocp
@@ -15,6 +22,11 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [%l,\ %v][%p%%]\ [LEN=%L]
 set history=500
 set visualbell t_vb=    " Use null visual bell (no beeps or flashes).
 
+if has('win32') || has('win64')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
+call pathogen#infect()
 
 if has("gui_running")
   "set textwidth=78
@@ -58,7 +70,7 @@ filetype plugin on
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
+" set grepprg=grep\ -nH\ $*
 
 " TIP: if you write your \label's as \label{fig:something}, then if you
 " type in \ref{fig: and press <C-n> you will automatically cycle through
@@ -79,14 +91,8 @@ function! IndentWithSpace ()
   set shiftwidth=4
 endfunction
 
-if has('win32') || has('win64')
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-endif
-
-call pathogen#infect()
-
-" Open the NERD Tree window
-nnoremap ,.  :NERDTree .<CR>
+" Toggle the NERD Tree window
+nnoremap ,.  :NERDTreeToggle<CR>
 
 let NERDChristmasTree=0
 let NERDTreeHighlightCursorline=1
@@ -132,3 +138,4 @@ nnoremap ,n 0f/inemOk<Esc>
 nnoremap ,0 0f/i0<Esc>
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
